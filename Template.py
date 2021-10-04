@@ -18,7 +18,7 @@ import logging
 import os
 import traceback
 import sys
-sys.path.insert(0, "Y:/Scripts")
+sys.path.insert(0, "C:/Scripts")
 import Logging
 
 
