@@ -14,7 +14,6 @@
  """
 
 import arcpy
-import logging
 import os
 import traceback
 import sys
@@ -39,5 +38,17 @@ def template():
         Logging.logger.info("------FINISH Template")
 
 
-if __name__ == '__main__':
-    template()
+if __name__ == "__main__":
+    traceback_info = traceback.format_exc()
+    try:
+        Logging.logger.info("Script Execution Started")
+        template()
+        Logging.logger.info("Script Execution Finished")
+    except (IOError, NameError, KeyError, IndexError, TypeError, UnboundLocalError, ValueError):
+        Logging.logger.info(traceback_info)
+    except NameError:
+        print(traceback_info)
+    except arcpy.ExecuteError:
+        Logging.logger.error(arcpy.GetMessages(2))
+    except:
+        Logging.logger.info("An unspecified exception occurred")
